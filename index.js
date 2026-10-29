@@ -46,9 +46,13 @@ app.command("/chalant-bot-21-help", async ({ ack, respond }) => {
     await ack();
     await respond({
         text: `*Available Commands:*
-        - \`/chalant-bot-21-ping\` - Check bot latency[span_2](start_span)[span_2](end_span)
+        - \`/chalant-bot-21-ping\` - Check bot latency
         - \`/chalant-bot-21-namaste\` - Send a greeting
         - \`/chalant-bot-21-hype\` - Get a random hype compliment
+        - \`/chalant-bot-21-catfact\` - Get a random cat fact
+        - \`/chalant-bot-21-dog\` - Get a cute dog picture
+        - \`/chalant-bot-21-activity\` - Get a fun activity idea
+        - \`/chalant-bot-21-nasa\` - Get NASA's APOD
         - \`/chalant-bot-21-help\` - Show this help menu`
     });
 });
@@ -86,6 +90,21 @@ app.command("/chalant-bot-21-activity", async ({ ack, respond }) => {
         });
     } catch (err) {
         await respond({ text: "Failed to fetch a fun activity" });
+    }
+});
+
+app.command("/chalant-bot-21-nasa", async ({ command, ack, respond }) => {
+    await ack();
+    try {
+        const response = await axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY');
+        const { title, explanation, url, date } = response.data;
+        await respond({
+            response_type: 'in_channel',
+            text: `*NASA Picture of the Day (${date})*\n*${title}*\n${explanation}\n\n*View Image:* ${url}`
+        });
+    } catch (error) {
+        console.error('Error fetching NASA data:', error);
+        await respond({ text: "Sorry, I couldn't fetch NASA'a picture right now!" });
     }
 });
     
