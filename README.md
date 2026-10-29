@@ -40,8 +40,10 @@ The bot is live 24/7 in the hack club slack workspace!
 
 To clone and run the repo, just run:
 
-- git clone [https://github.com/wizard21-sudo/Fun-Bot.git]
+- git clone https://github.com/wizard21-sudo/Fun-Bot.git
 - cd Fun-Bot
+- npm install
+- npm start
 
 # Credits
 - Built with the help of the Hackclub Guide. Hope you check it out!
