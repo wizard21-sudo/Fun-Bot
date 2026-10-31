@@ -26,7 +26,7 @@ The bot is live 24/7 in the hack club slack workspace!
 
 # Bot in action
 
-![Bot Demo](https://raw.githubusercontent.com/wizard21-sudo/Fun-Bot/main/demo.png)
+![Bot Demo](https://raw.githubusercontent.com/wizard21-sudo/Fun-Bot/main/demo.jpeg)
 
 
 ## Built With 
