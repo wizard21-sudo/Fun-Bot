@@ -97,8 +97,14 @@ app.command("/chalant-bot-21-nasa", async ({ command, ack, respond }) => {
     await ack();
     try {
         const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`);
-        const { title, explanation, date, url, hdurl } = response.data;
-        const imageUrl = hdurl || url;
+        const { title, explanation, date, url, hdurl, media_type  } = response.data;
+        let imageUrl = hdurl || url;
+        if (!imageUrl || imageUrl.includes('nasa-logo') || imageUrl.endsWith('.html')) {
+            imageUrl = 'https://apod.nasa.gov/apod/image/2301/M16_Janssen_960.jpg';
+        }
+        if (media_type === 'video') {
+            imageUrl = url; 
+        }
 
         await respond({
             response_type: 'in_channel',
@@ -106,7 +112,10 @@ app.command("/chalant-bot-21-nasa", async ({ command, ack, respond }) => {
         });
     } catch (error) {
         console.error('Error fetching NASA data:', error);
-        await respond({ text: "Sorry, I couldn't fetch NASA'a picture right now!" });
+        await respond({ 
+            response_type: 'in_channel',
+            text: " *NASA's servers are taking a cosmic break right now!* We couldn't fetch today's picture. Please try again later."
+        });
     }
 });
     
