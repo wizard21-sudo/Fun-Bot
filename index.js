@@ -52,7 +52,6 @@ app.command("/chalant-bot-21-help", async ({ ack, respond }) => {
         - \`/chalant-bot-21-catfact\` - Get a random cat fact
         - \`/chalant-bot-21-dog\` - Get a cute dog picture
         - \`/chalant-bot-21-activity\` - Get a fun activity idea
-        - \`/chalant-bot-21-nasa\` - Get NASA's APOD
         - \`/chalant-bot-21-help\` - Show this help menu`
     });
 });
@@ -92,34 +91,7 @@ app.command("/chalant-bot-21-activity", async ({ ack, respond }) => {
         await respond({ text: "Failed to fetch a fun activity" });
     }
 });
-
-app.command("/chalant-bot-21-nasa", async ({ command, ack, respond }) => {
-    await ack();
-    try {
-        const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`);
-        const { title, explanation, date, url, hdurl, media_type  } = response.data;
-        let imageUrl = hdurl || url;
-        if (!imageUrl || imageUrl.includes('nasa-logo') || imageUrl.endsWith('.html')) {
-            imageUrl = 'https://apod.nasa.gov/apod/image/2301/M16_Janssen_960.jpg';
-        }
-        if (media_type === 'video') {
-            imageUrl = url; 
-        }
-
-        await respond({
-            response_type: 'in_channel',
-            text: `*NASA Picture of the Day (${date}*\n*${title}*\n\n${explanation}\n\n*View Image:* ${imageUrl}`
-        });
-    } catch (error) {
-        console.error('Error fetching NASA data:', error);
-        await respond({ 
-            response_type: 'in_channel',
-            text: " *NASA's servers are taking a cosmic break right now!* We couldn't fetch today's picture. Please try again later."
-        });
-    }
-});
     
-
 (async()=>{
     await app.start();
     console.log("bot is running!");

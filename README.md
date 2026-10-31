@@ -1,6 +1,6 @@
 # Chalant-Bot-21
 
-a super chill slack bot running 24/7 on a cloud server that drops random cat facts, cute doggos, hype compliments, and NASA pics directly into your chat.
+a super chill slack bot running 24/7 on a cloud server that drops random cat facts, cute doggos, hype compliments directly into your chat.
 
 # How to test it out
 
@@ -16,7 +16,6 @@ The bot is live 24/7 in the hack club slack workspace!
 - `/chalant-bot-21-catfact` - Fetch random cat facts
 - `/chalant-bot-21-dog` - Pull up a random cute dog pics
 - `/chalant-bot-21-activity` - Get activity ideas for when you are bored
-- `/chalant-bot-21-nasa` - See NASA's APOD ( Astronomical Picture of the Day ) and its details
 - `/chalant-bot-21-help` - View all commands
 
 # Required scopes & permissions
