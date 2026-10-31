@@ -96,7 +96,7 @@ app.command("/chalant-bot-21-activity", async ({ ack, respond }) => {
 app.command("/chalant-bot-21-nasa", async ({ command, ack, respond }) => {
     await ack();
     try {
-        const response = await axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY');
+        const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`);
         const { title, explanation, url, date } = response.data;
         await respond({
             response_type: 'in_channel',
