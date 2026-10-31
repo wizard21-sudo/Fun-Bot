@@ -97,10 +97,12 @@ app.command("/chalant-bot-21-nasa", async ({ command, ack, respond }) => {
     await ack();
     try {
         const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`);
-        const { title, explanation, url, date } = response.data;
+        const { title, explanation, date, url, hdurl } = response.data;
+        const imageUrl = hdurl || url;
+
         await respond({
             response_type: 'in_channel',
-            text: `*NASA Picture of the Day (${date})*\n*${title}*\n${explanation}\n\n*View Image:* ${url}`
+            text: `*NASA Picture of the Day (${date}*\n*${title}*\n\n${explanation}\n\n*View Image:* ${imageUrl}`
         });
     } catch (error) {
         console.error('Error fetching NASA data:', error);
